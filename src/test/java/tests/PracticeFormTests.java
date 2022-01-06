@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PracticeFormTests {
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @BeforeAll
     static void beforeAll() {
@@ -22,18 +23,18 @@ public class PracticeFormTests {
 
         registrationPage
                 .openPage()
-                .setFirstName(TestData.firstName)
-                .setLastName(TestData.lastName)
-                .setEmail(TestData.Email)
-                .choiceGender(TestData.gender)
-                .setPhone(TestData.phone)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.Email)
+                .choiceGender(testData.gender)
+                .setPhone(testData.phone)
                 .setBirthDate("19","November","1998")
                 .setSubjects("Physics")
                 .setSubjects("English")
                 .choiceCheckbox("Sports")
                 .choiceCheckbox("Reading")
                 .choiceCheckbox("Music")
-                .setCurrentAddress(TestData.fullAddress)
+                .setCurrentAddress(testData.fullAddress)
                 .uploadPicture("Gordon.jpg")
                 .setState("Rajasthan")
                 .setCity("Jaiselmer")
@@ -41,15 +42,15 @@ public class PracticeFormTests {
 
 // Validation form
         $("#example-modal-sizes-title-lg").shouldBe(visible);
-        $(".table").shouldHave(text(TestData.firstName + " " + TestData.lastName),
-                text(TestData.Email),
-                text(TestData.gender),
-                text(TestData.phone),
+        $(".table").shouldHave(text(testData.firstName + " " + testData.lastName),
+                text(testData.Email),
+                text(testData.gender),
+                text(testData.phone),
                 text("19 November,1998"),
                 text("Physics, English"),
                 text("Sports, Reading, Music"),
                 text("Gordon.jpg"),
-                text(TestData.fullAddress),
+                text(testData.fullAddress),
                 text("Rajasthan Jaiselmer"));
 
 // Close form
