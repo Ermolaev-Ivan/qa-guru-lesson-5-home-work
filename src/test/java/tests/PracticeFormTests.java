@@ -1,3 +1,5 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,18 +22,18 @@ public class PracticeFormTests {
 
         registrationPage
                 .openPage()
-                .setFirstName("Gordon")
-                .setLastName("Freeman")
-                .setEmail("freeman_g@black.mesa")
-                .choiceGender("Male")
-                .setPhone("9998887766")
+                .setFirstName(TestData.firstName)
+                .setLastName(TestData.lastName)
+                .setEmail(TestData.Email)
+                .choiceGender(TestData.gender)
+                .setPhone(TestData.phone)
                 .setBirthDate("19","November","1998")
                 .setSubjects("Physics")
                 .setSubjects("English")
                 .choiceCheckbox("Sports")
                 .choiceCheckbox("Reading")
                 .choiceCheckbox("Music")
-                .setCurrentAddress("10400 Northeast Fourth Street Floor 14 Bellevue, WA 98004 USA")
+                .setCurrentAddress(TestData.fullAddress)
                 .uploadPicture("Gordon.jpg")
                 .setState("Rajasthan")
                 .setCity("Jaiselmer")
@@ -39,15 +41,15 @@ public class PracticeFormTests {
 
 // Validation form
         $("#example-modal-sizes-title-lg").shouldBe(visible);
-        $(".table").shouldHave(text("Gordon Freeman"),
-                text("freeman_g@black.mesa"),
-                text("Male"),
-                text("9998887766"),
+        $(".table").shouldHave(text(TestData.firstName + " " + TestData.lastName),
+                text(TestData.Email),
+                text(TestData.gender),
+                text(TestData.phone),
                 text("19 November,1998"),
-                text("Physics"),
+                text("Physics, English"),
                 text("Sports, Reading, Music"),
                 text("Gordon.jpg"),
-                text("10400 Northeast Fourth Street Floor 14 Bellevue, WA 98004 USA"),
+                text(TestData.fullAddress),
                 text("Rajasthan Jaiselmer"));
 
 // Close form
