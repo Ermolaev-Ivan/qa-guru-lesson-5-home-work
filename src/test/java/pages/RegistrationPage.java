@@ -1,12 +1,7 @@
 package pages;
 
 import pages.components.CalendarComponent;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import pages.components.CalendarComponent.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -25,8 +20,10 @@ public class RegistrationPage {
         stateInput = $("#react-select-3-input"),
         cityInput = $("#react-select-4-input"),
         submitButton = $("#submit"),
+        closeLargeModalButton = $("#closeLargeModal"),
         hobbiesCheckbox = $("#hobbiesWrapper");
 
+    String url_page_form = "https://demoqa.com/automation-practice-form";
 
     public CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -36,7 +33,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage openPage() {
-        open("https://demoqa.com/automation-practice-form");
+        open(url_page_form);
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         return this;
     }
@@ -98,6 +95,11 @@ public class RegistrationPage {
 
         public RegistrationPage sendFormButton(){
             submitButton.scrollTo().click();
+        return this;
+    }
+
+        public RegistrationPage closeModal(){
+            closeLargeModalButton.scrollTo().click();
         return this;
     }
 }
